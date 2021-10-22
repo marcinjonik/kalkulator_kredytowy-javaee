@@ -3,26 +3,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Kredyt</title>
 </h:head>
 <h:body>
-
-	<h1>Kredyt</h1>
+	
+	<p:panel header="Kredyt" style="margin: 1em auto" toggleable="true" closable="true" toggleSpeed="300">
 
 	<h:form id="bla">
-  		Kwota: <h:inputText value="#{kredytBB.kwota}" />
-		<br />
-  		Lat: <h:inputText value="#{kredytBB.lat}" />
-		<br />
-		Oprocentowanie: <h:inputText value="#{kredytBB.oprocentowanie}" />
-		<br />
-		<h:messages id="msg" />
-
-		<h:commandButton value="Oblicz" action="#{kredytBB.calc()}"/>
+		<h:panelGrid id="grid" columns="3" cellpadding="5">
+		
+		<p:outputLabel for="x" value="Kwota:"/>
+  		<p:inputText id="x" value="#{kredytBB.x}" required="true" requiredMessage="Brak kwoty"/>
+  		<p:message for="x"/>
+  		
+  		<p:outputLabel for="y" value="Lat:"/>
+  		<p:inputText id="y" value="#{kredytBB.y}" required="true" requiredMessage="Brak ilości lat"/>
+  		<p:message for="y"/>
+  		
+  		<p:outputLabel for="z" value="Oprocentowanie:"/>
+		<p:inputText id="z" value="#{kredytBB.z}" required="true" requiredMessage="Brak wysokosci oprocentowania"/>
+		<p:message for="z"/>
+		
+		<p:commandButton value="Oblicz" action="#{kredytBB.calc()}" update="@form"/>
 		<br />	
+		</h:panelGrid>
+		<p:growl id="msg" />
 	</h:form>
-
+	</p:panel>
+	
 </h:body>
 </html>
