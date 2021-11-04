@@ -11,35 +11,35 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class KredytBB {
-	private String x;
-	private String y;
-	private String z;
+	private Double x;
+	private Integer y;
+	private Integer z;
 	private Double wynik;
-
+	
 	@Inject
 	FacesContext ctx;
 
-	public String getX() {
+	public Double getX() {
 		return x;
 	}
 
-	public void setX(String x) {
+	public void setX(Double x) {
 		this.x = x;
 	}
 
-	public String getY() {
+	public Integer getY() {
 		return y;
 	}
 
-	public void setY(String y) {
+	public void setY(Integer y) {
 		this.y = y;
 	}
 
-	public String getZ() {
+	public Integer getZ() {
 		return z;
 	}
 
-	public void setZ(String z) {
+	public void setZ(Integer z) {
 		this.z = z;
 	}
 
@@ -53,11 +53,10 @@ public class KredytBB {
 
 	public boolean doTheMath() {
 		try {
-			double x = Double.parseDouble(this.x);
-			double y = Double.parseDouble(this.y);
-			double z = Double.parseDouble(this.z);
-
-			wynik = (x/(y*12))*(z/100+1);
+			double x = this.x;
+			Integer y = this.y;
+			Integer z = this.z;
+			wynik = (x*(z*0.01+1))/(y*12);
 
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
 			return true;

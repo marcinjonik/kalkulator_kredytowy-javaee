@@ -16,15 +16,21 @@
 		<h:panelGrid id="grid" columns="3" cellpadding="5">
 		
 		<p:outputLabel for="x" value="Kwota:"/>
-  		<p:inputText id="x" value="#{kredytBB.x}" required="true" requiredMessage="Brak kwoty"/>
+  		<p:inputText id="x" value="#{kredytBB.x}" required="true" requiredMessage="Brak kwoty" converterMessage="Wartość musi być liczba" validatorMessage="Wartość musi być większa niż 100">
+  		<f:validateDoubleRange minimum="100.0"/>
+  		</p:inputText>
   		<p:message for="x"/>
   		
   		<p:outputLabel for="y" value="Lat:"/>
-  		<p:inputText id="y" value="#{kredytBB.y}" required="true" requiredMessage="Brak ilości lat"/>
+  		<p:inputText id="y" value="#{kredytBB.y}" required="true" requiredMessage="Brak ilości lat" converterMessage="Wartość musi być liczba całkowita" validatorMessage="Wartość musi być większa niż 1 i mniejsza niż 25">
+  		<f:validateLongRange minimum="1" maximum="25"/>
+  		</p:inputText>
   		<p:message for="y"/>
   		
   		<p:outputLabel for="z" value="Oprocentowanie:"/>
-		<p:inputText id="z" value="#{kredytBB.z}" required="true" requiredMessage="Brak wysokosci oprocentowania"/>
+		<p:inputText id="z" value="#{kredytBB.z}" required="true" requiredMessage="Brak wysokosci oprocentowania" converterMessage="Wartość musi być liczba całkowita" validatorMessage="Wartość musi być większa od 1 i mniejsza niż 100">
+		<f:validateLongRange minimum="1" maximum="100"/>
+		</p:inputText>
 		<p:message for="z"/>
 		
 		<p:commandButton value="Oblicz" action="#{kredytBB.calc()}" update="@form"/>
